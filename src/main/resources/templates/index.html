@@ -25,10 +25,14 @@
 </form>
 <h4>QR with link</h4>
 <div><img th:src="${link}" /></div>
+<div><a th:href="${link}">Link</a> </div>
 <h4>Content of link</h4>
 <div><iframe th:src="${value}"></iframe></div>
+<div><a th:href="${value}">Link</a> </div>
 <h4>Direct QR</h4>
 <div><img th:src="${qr}" /></div>
+<div><a th:href="${qr}">Link</a> </div>
+<div><a th:href="${qrdirect}">Value Link</a> </div>
 </body>
 </html>
 

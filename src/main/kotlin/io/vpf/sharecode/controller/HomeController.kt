@@ -32,6 +32,7 @@ class HomeController @Autowired constructor(val repo: SharecodeRepository) {
                 "post" to post,
                 "link" to "code/${post.id.toString()}",
                 "qr" to "qr/${post.id.toString()}",
+                "qrdirect" to "qr/direct/${Base64.getEncoder().encodeToString((post.value?:"vpf:empty").toByteArray())}",
                 "value" to "value/${post.id.toString()}"))
     }
 
