@@ -27,7 +27,7 @@ class HomeController @Autowired constructor(val repo: SharecodeRepository) {
         if (bindingResult.hasErrors()) {
             return ModelAndView("index")
         }
-        repo.putCode(post.id!!, post.value ?: "")
+        repo.putCode(post.id!!, if(post.value.isNullOrEmpty()) "vpf:empty" else post.value!!)
         return ModelAndView("index", mapOf(
                 "post" to post,
                 "link" to "code/${post.id.toString()}",
