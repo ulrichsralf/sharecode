@@ -39,4 +39,13 @@ class SharecodeController @Autowired constructor(val repo: SharecodeRepository) 
     fun getValue(@PathVariable key: UUID) : ResponseEntity<String>{
         return ResponseEntity.ok(repo.getCode(key)?:"")
     }
+
+
+    @RequestMapping("qr/{key}",  produces = [MediaType.IMAGE_PNG_VALUE])
+    fun getQR(@PathVariable key: UUID) : ResponseEntity<ByteArray>{
+        val m = QRCodeWriter().encode( repo.getCode(key)?:"", BarcodeFormat.QR_CODE, 200, 200)
+        val out = ByteArrayOutputStream()
+        MatrixToImageWriter.writeToStream(m, "PNG", out)
+        return ResponseEntity.ok(out.toByteArray())
+    }
 }
